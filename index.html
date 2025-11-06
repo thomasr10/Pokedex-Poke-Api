@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéApi</title>
+    <link rel="stylesheet" href="./assets/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <main id="app">
+        <h1>Pokedex PokeAPI</h1>
+        <section class="container">
+            <section id="pokemonContainer">
+                <figure>
+                    <img id="pokemonImage">
+                </figure>
+                <div id="pokemonInfo">
+                    <div class="info-container">
+                        <span class="key bit-font">Id : </span>
+                        <span id="pokemonId" class="bit-font value"></span>
+                    </div>
+                    <div class="info-container">
+                        <span class="key bit-font">Nom : </span>
+                        <span id="pokemonName" class="bit-font"></p>
+                    </div>
+                    <div class="info-container">
+                        <span class="key bit-font">Types : </span>
+                        <span id="pokemonTypes"></span>
+                    </div>
+                </div>
+            </section>
+            <div class="buttonContainer">
+                <div id="left-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+                <div id="right-btn">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+            </div>
+            <div class="buttonContainer">
+                <button id="shinyBtn"></button>
+            </div>
+            </div>
+        </section>
+    </main>
+    <script src="./assets/js/index.js"></script>
+</body>
+
+</html>
