@@ -387,9 +387,7 @@ h1 {
 
         }
 
-        button,
-        #right-btn,
-        #left-btn {
+        button {
             display: block;
 
             &:hover {
@@ -418,16 +416,16 @@ h1 {
 #left-btn {
     border: solid 2px #33333378;
     border-radius: 50%;
-    height: 1.6rem;
-    width: 1.6rem;
+    height: 2rem;
+    width: 2rem;
     align-content: center;
     text-align: center;
     background-color: var(--white);
     font-size: .8rem;
-    transition: font-size .25s ease;
+    transition: opacity .4s ease;
 
     &:hover {
-        font-size: 1rem;
+        opacity: .9;
 
     }
 }

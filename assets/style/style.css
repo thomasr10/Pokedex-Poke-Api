@@ -358,14 +358,10 @@ h1 {
 #app .container #pokemonContainer #pokemonInfo .info-container .key {
   text-decoration: underline;
 }
-#app .container button,
-#app .container #right-btn,
-#app .container #left-btn {
+#app .container button {
   display: block;
 }
-#app .container button:hover,
-#app .container #right-btn:hover,
-#app .container #left-btn:hover {
+#app .container button:hover {
   cursor: pointer;
 }
 #app #shinyBtn {
@@ -386,17 +382,17 @@ h1 {
 #left-btn {
   border: solid 2px rgba(51, 51, 51, 0.4705882353);
   border-radius: 50%;
-  height: 1.6rem;
-  width: 1.6rem;
+  height: 2rem;
+  width: 2rem;
   align-content: center;
   text-align: center;
   background-color: var(--white);
   font-size: 0.8rem;
-  transition: font-size 0.25s ease;
+  transition: opacity 0.4s ease;
 }
 #right-btn:hover,
 #left-btn:hover {
-  font-size: 1rem;
+  opacity: 0.9;
 }
 
 .error-msg-container {
