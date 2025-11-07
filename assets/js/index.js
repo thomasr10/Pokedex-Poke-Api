@@ -15,6 +15,9 @@ const rightBtn = document.getElementById('right-btn');
 const shinyBtn = document.getElementById('shinyBtn');
 const app = document.getElementById('app');
 const loader = document.getElementById('loader');
+const errorMsgContainer = document.querySelector('.error-msg-container');
+
+errorMsgContainer.style.display = 'none';
 
 // DÉCLARATION DES FONCTIONS
 // Display Loader
@@ -25,7 +28,7 @@ function displayLoader() {
     const loader = document.createElement('div');
     loader.classList.add('loading');
 
-    for(let i = 0; i < 3; i++) {
+    for (let i = 0; i <= 3; i++) {
         const dot = document.createElement('div');
         dot.classList.add('dot');
         loader.appendChild(dot);
@@ -38,10 +41,16 @@ function displayLoader() {
 }
 
 // Remove loader
-function removeLoader () {
+function removeLoader() {
     const loaderContainer = document.querySelector('.loader-container');
-    loaderContainer.remove();
-    app.style.display = 'block'
+
+    if (loaderContainer) {
+        setTimeout(() => {
+            loaderContainer.remove();
+            app.style.display = 'block';
+        }, 1000);
+    } 
+
 }
 
 // Get Pokemon By Id
@@ -60,13 +69,14 @@ async function getPokemon(id) {
 
     } catch (e) {
         console.error(e);
+        displayError();
+    } finally {
+        removeLoader();
     }
 }
 
 // Render Pokemon
 function renderPokemon(pokemonInfos) {
-    console.log(pokemonInfos);
-
     // Delete previous type label
     deletePreviousLabel();
 
@@ -85,7 +95,6 @@ function renderPokemon(pokemonInfos) {
         typeLabel.textContent = type.type.name;
         pokemonTypes.appendChild(typeLabel);
     });
-    console.log('Données affichées')
 }
 
 // Get Next Pokemon
@@ -98,9 +107,6 @@ function goPrev() {
     getPokemon(currentPokemon)
         .then((data) => {
             renderPokemon(data);
-            setTimeout(() => {
-                removeLoader();
-            }, (1000));
         })
         .catch((e) => console.error(e));
 }
@@ -114,9 +120,6 @@ function goNext() {
     getPokemon(currentPokemon)
         .then((data) => {
             renderPokemon(data);
-            setTimeout(() => {
-                removeLoader();
-            }, (1000));
 
         })
         .catch((e) => console.error(e));
@@ -149,9 +152,6 @@ function getShinyPokemon() {
     getPokemon(currentPokemon)
         .then((data) => {
             renderPokemon(data);
-            setTimeout(() => {
-                removeLoader();
-            }, (1000));
 
         })
         .catch((e) => console.error(e));
@@ -165,9 +165,6 @@ function getDefaultPokemon() {
     getPokemon(currentPokemon)
         .then((data) => {
             renderPokemon(data);
-            setTimeout(() => {
-                removeLoader();
-            }, (1000));
 
         })
         .catch((e) => console.error(e));
@@ -181,6 +178,22 @@ function checkShiny(isShiny, pokemonInfos) {
     return (isShiny) ? pokemonInfos.sprites.front_shiny : pokemonInfos.sprites.front_default;
 }
 
+// Display error message
+function displayError() {
+    const previousErrorMsg = document.querySelector('.error-msg');
+
+    if (!previousErrorMsg) {
+        const messageContainer = document.createElement('div');
+        messageContainer.textContent = "Erreur lors de la récupération des données. Veuillez réessayer !";
+        messageContainer.classList.add('error-msg');
+        errorMsgContainer.appendChild(messageContainer);
+        errorMsgContainer.style.display = 'block';
+
+    }
+
+
+}
+
 // CALL FUNCTIONS TO GET AND DISPLAY POKEMON 
 displayLoader();
 getPokemon(currentPokemon)
@@ -191,7 +204,9 @@ getPokemon(currentPokemon)
         }, (1000));
 
     })
-    .catch((e) => console.error(e));
+    .catch((e) => {
+        console.error(e);
+    });
 
 leftBtn.addEventListener('click', goPrev);
 rightBtn.addEventListener('click', goNext);
